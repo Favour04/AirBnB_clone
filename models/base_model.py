@@ -37,7 +37,7 @@ class BaseModel:
         dict.update(self.__dict__)
         dict["__class__"] = f"{self.__class__.__name__}"
         if not isinstance(dict["created_at"], str):
-            dict["created_at"] = self.updated_at.isoformat()
+            dict["created_at"] = self.created_at.isoformat()
         if not isinstance(dict["updated_at"], str):
             dict["updated_at"] = self.updated_at.isoformat()
         return dict
