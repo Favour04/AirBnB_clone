@@ -36,7 +36,9 @@ class BaseModel:
         dict = self.__dict__
         dict["__class__"] = f"{self.__class__.__name__}"
         if not isinstance(dict["created_at"], str):
-            dict["created_at"] = f"{dict['created_at'].strftime('%Y-%m-%dT%H:%M:%S.%f')}"
+            dict["created_at"] = \
+                    f"{dict['created_at'].strftime('%Y-%m-%dT%H:%M:%S.%f')}"
         if not isinstance(dict["updated_at"], str):
-            dict["updated_at"] = f"{dict['updated_at'].strftime('%Y-%m-%dT%H:%M:%S.%f')}"
+            dict["updated_at"] = \
+                    f"{dict['updated_at'].strftime('%Y-%m-%dT%H:%M:%S.%f')}"
         return dict

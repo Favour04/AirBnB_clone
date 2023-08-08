@@ -57,7 +57,8 @@ class FileStorage:
             with. it will be like...
             'BaseModel.e79e744a-55d4-45a3-b74a-ca5fae74e0e2'
         """
-        self.__objects[str(objrepr["__class__"]) + '.' + str(objrepr['id'])] = obj
+        self.__objects[str(objrepr["__class__"]) + '.' + str(objrepr['id'])]\
+            = obj
 
     def save(self):
         """
@@ -93,10 +94,10 @@ class FileStorage:
                                 'Place': Place,
                                 'Review': Review,
                                 'State': State,
-                                'User':User,
+                                'User': User,
                     }
                     clasuse = content[key]['__class__']
                     content[key] = classes[clasuse](**content[key])
                 self.__objects = content
         except Exception as err:
-                print(err)
+            print(err)

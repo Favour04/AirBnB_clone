@@ -8,6 +8,8 @@ from models import storage
     This Module contains the class
     Amenity that inherits from BaseModel
 """
+
+
 class Amenity(BaseModel):
     """
         Amenity inherit from the class basemodel
@@ -21,7 +23,7 @@ class Amenity(BaseModel):
         if kwargs:
             for key, item in kwargs.items():
                 if key == 'name':
-                    self.name = item 
+                    self.name = item
                 elif key == 'created_at':
                     self.created_at = datetime.fromisoformat(item)
                 elif key == 'updated_at':

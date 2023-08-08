@@ -8,6 +8,8 @@ from models import storage
     This Module contains the class
     Place that inherits from BaseModel
 """
+
+
 class Place(BaseModel):
     """
         Place inherit from the class basemodel
@@ -53,13 +55,13 @@ class Place(BaseModel):
                 elif key == 'amenity_ids':
                     self.amenity_ids = item
                 elif key == 'name':
-                    self.name = item 
+                    self.name = item
                 elif key == 'created_at':
                     self.created_at = datetime.fromisoformat(item)
                 elif key == 'updated_at':
                     self.updated_at = datetime.fromisoformat(item)
                 elif key == 'id':
-                    self.id = item 
+                    self.id = item
             kwargs = {}
         else:
             storage.new(self)

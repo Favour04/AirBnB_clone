@@ -8,6 +8,8 @@ from models import storage
     This Module contains the class
     State that inherits from BaseModel
 """
+
+
 class State(BaseModel):
     """
         State inherit from the class basemodel
@@ -21,13 +23,13 @@ class State(BaseModel):
         if kwargs:
             for key, item in kwargs.items():
                 if key == 'name':
-                    self.name = item 
+                    self.name = item
                 elif key == 'created_at':
                     self.created_at = datetime.fromisoformat(item)
                 elif key == 'updated_at':
                     self.updated_at = datetime.fromisoformat(item)
                 elif key == 'id':
-                    self.id = item    
+                    self.id = item
             kwargs = {}
         else:
             storage.new(self)

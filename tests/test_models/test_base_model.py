@@ -1,10 +1,10 @@
 import unittest
 from datetime import datetime
-from models import base_model
+from models.base_model import BaseModel
 
 class test_basemodel(unittest.TestCase):
     def setUp(self):
-        self.base_model = base_model.BaseModel()
+        self.base_model = BaseModel()
 
     def test_id_is_string(self):
         self.assertIsInstance(self.base_model.id, str)
@@ -32,8 +32,8 @@ class test_basemodel(unittest.TestCase):
         result = self.base_model.to_dict()
         self.assertIsInstance(result['created_at'], str)
         self.assertIsInstance(result['updated_at'], str)
-        self.assertEqual(result['created_at'], self.base_model.created_at.strftime("%Y-%m-%dT%H:%M:%S.%f"))
-        self.assertEqual(result['updated_at'], self.base_model.updated_at.strftime("%Y-%m-%dT%H:%M:%S.%f"))
+        self.assertEqual(result['created_at'], self.base_model.created_at)
+        self.assertEqual(result['updated_at'], self.base_model.updated_at)
 
     def test_init_with_id(self):
         id_value = '12345'

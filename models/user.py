@@ -8,6 +8,8 @@ from models import storage
     This Module contains the class
     User that inherits from BaseModel
 """
+
+
 class User(BaseModel):
     """
         Base Model contains the public
@@ -22,7 +24,7 @@ class User(BaseModel):
         if kwargs:
             for key, item in kwargs.items():
                 if key == 'password':
-                    self.password = item 
+                    self.password = item
                 elif key == 'first_name':
                     self.first_name = item
                 elif key == 'last_name':

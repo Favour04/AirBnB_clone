@@ -18,13 +18,15 @@ classes = {
             'Place': Place,
             'Review': Review,
             'State': State,
-            'User':User,            
+            'User': User,
 }
+
 
 """
     This program it the entry point
     for our console
 """
+
 
 class HBNBCommand(cmd.Cmd):
     """
@@ -33,24 +35,24 @@ class HBNBCommand(cmd.Cmd):
         * Custom prompt: (hbnb)
         * quit and EOF to exit the program
         * help (this action is provided by default
-          by cmd but you should keep it updated and 
+          by cmd but you should keep it updated and
           documented as you work through tasks)
         * create: Creates new instance of a class
-        * show: Prints the string representation 
+        * show: Prints the string representation
           of a an object
         * destroy: Deletes an instance base on name&id
         * all: print all string rep of all instance
         * update: Updates insatance based on name & id
     """
 
-
     prompt = '(hbnb) '
 
     def do_EOF(self, line):
         """EOF command to exit the program"""
         # return end of file
+        print("")
         return True
-    
+
     def do_quit(self, line):
         """Quit command to exit the program\n"""
         # return end of file
@@ -93,7 +95,7 @@ class HBNBCommand(cmd.Cmd):
             print(obj.id)
         elif line not in classes.keys():
             print("** class dosen't exist **")
-    
+
     def do_show(self, line):
         objs = storage.all()
         args = line.split()
@@ -116,7 +118,7 @@ class HBNBCommand(cmd.Cmd):
                     print('** no instance found **')
                     break
                 count += 1
-    
+
     def do_destroy(self, line):
         objs = storage.all()
         args = line.split()
@@ -192,5 +194,6 @@ class HBNBCommand(cmd.Cmd):
         """
         return None
 
+
 if __name__ == '__main__':
-        HBNBCommand().cmdloop()
+    HBNBCommand().cmdloop()

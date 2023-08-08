@@ -8,6 +8,8 @@ from models import storage
     This Module contains the class
     City that inherits from BaseModel
 """
+
+
 class City(BaseModel):
     """
         City inherit from the class basemodel
@@ -30,7 +32,7 @@ class City(BaseModel):
                 elif key == 'updated_at':
                     self.updated_at = datetime.fromisoformat(item)
                 elif key == 'id':
-                    self.id = item    
+                    self.id = item
             kwargs = {}
         else:
             storage.new(self)
