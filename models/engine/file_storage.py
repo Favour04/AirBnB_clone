@@ -56,7 +56,7 @@ class FileStorage:
             with. it will be like...
             'BaseModel.e79e744a-55d4-45a3-b74a-ca5fae74e0e2'
         """
-        self.__objects[str(objrepr["__class__"]) + '.' + str(objrepr['id'])]\
+        FileStorage.__objects[str(objrepr["__class__"]) + '.' + str(objrepr['id'])]\
             = obj
 
     def save(self):
@@ -65,10 +65,10 @@ class FileStorage:
             the new obj to a dict without affecting the
             obj in self.__objects
         """
-        obj = copy.deepcopy(FileStorage.__objects)
+        obj = {}
+        obj.update(FileStorage.__objects)
         for key in obj.keys():
-            if not isinstance(obj[key], dict):
-                obj[key] = obj[key].to_dict()
+            obj[key] = obj[key].to_dict()
 
         with open(FileStorage.__file_path, "w") as file:
             json.dump(obj, file)
