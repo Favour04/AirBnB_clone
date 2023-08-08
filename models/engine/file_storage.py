@@ -41,9 +41,8 @@ class FileStorage:
         If the file doesn’t exist, no exception should be raised)
     """
 
-    def __init__(self):
-        self.__file_path = "file.json"
-        self.__objects = {}
+    __file_path = "file.json"
+    __objects = {}
 
     def all(self):
         return self.__objects
@@ -66,7 +65,7 @@ class FileStorage:
             the new obj to a dict without affecting the
             obj in self.__objects
         """
-        obj = copy.deepcopy(self.__objects)
+        obj = copy.deepcopy(FileStorage.__objects)
         for key in obj.keys():
             if not isinstance(obj[key], dict):
                 obj[key] = obj[key].to_dict()
@@ -76,7 +75,7 @@ class FileStorage:
 
     def reload(self):
         try:
-            with open(self.__file_path, "r") as file:
+            with open(FileStorage.__file_path, "r") as file:
                 content = json.load(file)
                 for key in content.keys():
                     # imported here to prevent circular importation
@@ -98,6 +97,6 @@ class FileStorage:
                     }
                     clasuse = content[key]['__class__']
                     content[key] = classes[clasuse](**content[key])
-                self.__objects = content
+                FileStorage.__objects = content
         except Exception as err:
             print(err)
