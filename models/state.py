@@ -20,16 +20,3 @@ class State(BaseModel):
     def __init__(self, *args, **kwargs):
         super().__init__()
         self.name = ""
-        if kwargs:
-            for key, item in kwargs.items():
-                if key == 'name':
-                    self.name = item
-                elif key == 'created_at':
-                    self.created_at = datetime.fromisoformat(item)
-                elif key == 'updated_at':
-                    self.updated_at = datetime.fromisoformat(item)
-                elif key == 'id':
-                    self.id = item
-            kwargs = {}
-        else:
-            storage.new(self)

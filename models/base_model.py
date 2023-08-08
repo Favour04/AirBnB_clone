@@ -15,13 +15,13 @@ class BaseModel:
         self.updated_at = datetime.fromisoformat(str(datetime.now()))
         if kwargs:
             for key, value in kwargs.items():
-                if key == 'id':
-                    self.id = value
                 if key == 'created_at':
-                    self.created_at = datetime.fromisoformat(value)
+                    key = datetime.fromisoformat(value)
                 if key == 'updated_at':
-                    self.updated_at = datetime.fromisoformat(value)
-            kwargs = {}
+                    key = datetime.fromisoformat(value)
+            del kwargs['__class__']
+            self.__dict__.update(kwargs)
+            
         else:
             storage.new(self)
 

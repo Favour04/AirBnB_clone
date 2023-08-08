@@ -45,7 +45,7 @@ class FileStorage:
     __objects = {}
 
     def all(self):
-        return self.__objects
+        return FileStorage.__objects
 
     def new(self, obj):
         # The aim of 'objrepr' is to get the id in string
@@ -70,14 +70,15 @@ class FileStorage:
             if not isinstance(obj[key], dict):
                 obj[key] = obj[key].to_dict()
 
-        with open(self.__file_path, "w") as file:
+        with open(FileStorage.__file_path, "w") as file:
             json.dump(obj, file)
 
     def reload(self):
         try:
+            content = {}
             with open(FileStorage.__file_path, "r") as file:
                 content = json.load(file)
-                for key in content.keys():
+                for key, value in content.items():
                     # imported here to prevent circular importation
                     from ..amenity import Amenity
                     from ..base_model import BaseModel
@@ -95,8 +96,7 @@ class FileStorage:
                                 'State': State,
                                 'User': User,
                     }
-                    clasuse = content[key]['__class__']
-                    content[key] = classes[clasuse](**content[key])
-                FileStorage.__objects = content
-        except Exception as err:
-            print(err)
+                    clasuse = value['__class__']
+                    self.all()[key] = classes[clasuse](**value)
+        except FileNotFoundError:
+            pass
