@@ -1,4 +1,10 @@
 #!/usr/bin/python3
+"""
+    This module contian hbnb
+    cosole program
+"""
+
+
 from models.amenity import Amenity
 from models.base_model import BaseModel
 from models.city import City
@@ -20,12 +26,6 @@ classes = {
             'State': State,
             'User': User,
 }
-
-
-"""
-    This program it the entry point
-    for our console
-"""
 
 
 class HBNBCommand(cmd.Cmd):
@@ -94,7 +94,7 @@ class HBNBCommand(cmd.Cmd):
             obj.save()
             print(obj.id)
         elif line not in classes.keys():
-            print("** class dosen't exist **")
+            print("** class doesn't exist **")
 
     def do_show(self, line):
         objs = storage.all()
@@ -105,7 +105,7 @@ class HBNBCommand(cmd.Cmd):
         elif args[0] not in classes.keys():
             print("** class doesn't exist **")
         elif len(args) == 1:
-            print('** instance id missing **')
+            print('** instance id missing **') 
         else:
             obj_id = f"{args[0]}" + '.' + f"{args[1]}"
             objnum = len(objs.keys())
@@ -170,7 +170,11 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) == 1:
             print('** instance id missing **')
         elif len(args) == 2:
-            print('** attribute name missing  **')
+            obj_id = f"{args[0]}" + '.' + f"{args[1]}"
+            if obj_id in storage.all().keys():
+                print('** attribute name missing **')
+            else:
+                print('** no instance found **')
         elif len(args) == 3:
             print('** value missing **')
         else:
