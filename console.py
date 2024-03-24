@@ -5,25 +5,24 @@
 """
 
 
-# from models.amenity import Amenity
+from models.amenity import Amenity
 from models.base_model import BaseModel
-# from models.city import City
+from models.city import City
 import cmd
-# from datetime import datetime
-# from models.place import Place
-# from models.review import Review
+from models.place import Place
+from models.review import Review
 import shlex
-# from models.state import State
+from models.state import State
 from models import storage
-# from models.user import User
+from models.user import User
 classes = {
-            # 'Amenity': Amenity,
+            'Amenity': Amenity,
             'BaseModel': BaseModel,
-            # 'City': City,
-            # 'Place': Place,
-            # 'Review': Review,
-            # 'State': State,
-            # 'User': User,
+            'City': City,
+            'Place': Place,
+            'Review': Review,
+            'State': State,
+            'User': User,
 }
 
 
@@ -49,32 +48,32 @@ class HBNBCommand(cmd.Cmd):
         if line == '':
             print("** class name missing **")
         elif line == 'Amenity':
-            # obj = Amenity()
-            # obj.save()
+            obj = Amenity()
+            obj.save()
             print(obj.id)
         elif line == 'BaseModel':
             obj = BaseModel()
             obj.save()
             print(obj.id)
         elif line == 'City':
-            # obj = City()
-            # obj.save()
+            obj = City()
+            obj.save()
             print(obj.id)
         elif line == 'Place':
-            # obj = Place()
-            # obj.save()
+            obj = Place()
+            obj.save()
             print(obj.id)
         elif line == 'Review':
-            # obj = Review()
-            # obj.save()
+            obj = Review()
+            obj.save()
             print(obj.id)
         elif line == 'State':
-            # obj = State()
-            # obj.save()
+            obj = State()
+            obj.save()
             print(obj.id)
         elif line == 'User':
-            # obj = User()
-            # obj.save()
+            obj = User()
+            obj.save()
             print(obj.id)
         elif line not in classes.keys():
             print("** class doesn't exist **")
