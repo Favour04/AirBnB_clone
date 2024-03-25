@@ -13,5 +13,5 @@ class State(BaseModel):
             - name - Name of the state
     """
     def __init__(self, *args, **kwargs):
-        super().__init__()
+        super().__init__(*args, **kwargs)
         self.name = ""

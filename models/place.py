@@ -25,7 +25,7 @@ class Place(BaseModel):
             amenity_ids - List of Amenity ids
     """
     def __init__(self, *args, **kwargs):
-        super().__init__()
+        super().__init__(*args, **kwargs)
         self.city_id = ""
         self.user_id = ""
         self.name = ""

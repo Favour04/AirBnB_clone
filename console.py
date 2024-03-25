@@ -8,6 +8,7 @@ from models.base_model import BaseModel
 from models.city import City
 import cmd
 from models.place import Place
+import re
 from models.review import Review
 import shlex
 from models.state import State
@@ -182,6 +183,73 @@ class HBNBCommand(cmd.Cmd):
             execute anythign.
         """
         return ""
+
+    def do_count(self, line):
+        """
+            count all instances of a class
+            USEAGE: count <class name>
+        """
+        objs = storage.all()
+        count = 0
+        args = line.split()
+        if line == "":
+            print("** class name missing **")
+        elif args[0] not in classes.keys():
+            print("** class doesn't exist **")
+        else:
+            for obj in objs.values():
+                if obj.__class__.__name__ == args[0]:
+                    count += 1
+            print(count)
+
+    def default(self, line):
+        args = line.split('.')
+        pattern = r'[\w.-]+|".*?"'
+        if len(args) > 1:
+            tokens = re.findall(pattern, args[1])
+        else:
+            print("** command not found **")
+
+        if args[0] in classes.keys():
+            if len(tokens) > 1 or len(tokens) == 1:
+                if tokens[0] == 'all':
+                    self.do_all(args[0])
+                elif tokens[0] == 'show':
+                    if len(tokens) == 1:
+                        self.do_show(args[0])
+                    if len(tokens) == 2 or len(tokens) > 2:
+                        id = tokens[1].strip('"\'')
+                        self.do_show(args[0] + ' ' + f"{id}")
+                elif tokens[0] == 'destroy':
+                    if len(tokens) == 1:
+                        self.do_destroy(args[0])
+                    if len(tokens) == 2 or len(tokens) > 2:
+                        id = tokens[1].strip('"\'')
+                        self.do_destroy(args[0] + ' ' + f"{id}")
+                elif tokens[0] == 'update':
+                    if len(tokens) == 1:
+                        self.do_update(args[0])
+                    if len(tokens) == 2:
+                        id = tokens[1].strip('"\'')
+                        self.do_update(args[0] + ' ' + id)
+                    if len(tokens) == 3:
+                        id = tokens[1].strip('"\'')
+                        self.do_update(args[0] + ' ' + id + ' '
+                                       + tokens[2].strip('"\''))
+                    if len(tokens) == 4:
+                        id = tokens[1].strip('"\'')
+                        feild = tokens[2].strip('"\'')
+                        value = tokens[3].strip('"\'')
+                        self.do_update(args[0] + ' ' + id + ' '
+                                       + feild + ' ' + "'" + value + "'")
+                elif tokens[0] == 'count':
+                    self.do_count(args[0])
+                else:
+                    print("** command not found **")
+            else:
+                print("** command not found **")
+        else:
+            print("** command not found **")
 
 
 if __name__ == '__main__':

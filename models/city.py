@@ -24,6 +24,6 @@ class City(BaseModel):
             *args: Variable length argument list.
             **kwargs: Arbitrary keyword arguments.
         """
-        super().__init__()
+        super().__init__(*args, **kwargs)
         self.state_id = ""
         self.name = ""
