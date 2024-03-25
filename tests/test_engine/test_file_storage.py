@@ -1,8 +1,6 @@
 import sys
 sys.path.append('../..') # to access the parent directory
 import unittest
-from unittest.mock import patch, mock_open
-from unittest import mock
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 import logging
