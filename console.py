@@ -150,8 +150,11 @@ class HBNBCommand(cmd.Cmd):
             USEAGE: update <class name> <id> 'feild' 'value'
         """
         args = shlex.split(line)
-        obj_id = f"{args[0]}" + '.' + f"{args[1]}"
         objects = storage.all()
+        if len(args) == 2:
+            obj_id = f"{args[0]}" + '.' + f"{args[1]}"
+        else:
+            obj_id = None
 
         if line == '':
             print('** class name missing **')
