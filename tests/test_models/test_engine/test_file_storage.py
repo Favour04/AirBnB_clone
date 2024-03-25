@@ -1,5 +1,5 @@
 import sys
-sys.path.append('../../..') # to access the parent directory
+sys.path.append('../..') # to access the parent directory
 import unittest
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
