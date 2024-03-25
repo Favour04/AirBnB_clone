@@ -3,8 +3,6 @@
     This module contian hbnb
     cosole program
 """
-
-
 from models.amenity import Amenity
 from models.base_model import BaseModel
 from models.city import City
@@ -15,6 +13,8 @@ import shlex
 from models.state import State
 from models import storage
 from models.user import User
+
+
 classes = {
             'Amenity': Amenity,
             'BaseModel': BaseModel,
@@ -79,6 +79,10 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_show(self, line):
+        """
+            show all instance of a class
+            USEAGE: show <class name>
+        """
         objs = storage.all()
         args = line.split()
 
@@ -87,7 +91,7 @@ class HBNBCommand(cmd.Cmd):
         elif args[0] not in classes.keys():
             print("** class doesn't exist **")
         elif len(args) == 1:
-            print('** instance id missing **') 
+            print('** instance id missing **')
         else:
             object_key = f"{args[0]}" + '.' + f"{args[1]}"
             if object_key in objs:
@@ -96,6 +100,10 @@ class HBNBCommand(cmd.Cmd):
                 print('** no instance found **')
 
     def do_destroy(self, line):
+        """
+            delete an instance of a class
+            USEAGE: destroy <class name> <id>
+        """
         objs = storage.all()
         args = line.split()
 
@@ -115,6 +123,12 @@ class HBNBCommand(cmd.Cmd):
                 print('** no instance found **')
 
     def do_all(self, line):
+        """
+            show all instances stored or
+            all instance of a class stored
+            USEAGE: (1) all
+                    (2) all <class name>
+        """
         objs = storage.all()
         if line == "":
             lists = []
@@ -131,6 +145,10 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_update(self, line):
+        """
+            update an instance of a class
+            USEAGE: update <class name> <id> 'feild' 'value'
+        """
         args = shlex.split(line)
         obj_id = f"{args[0]}" + '.' + f"{args[1]}"
         objects = storage.all()
@@ -161,6 +179,7 @@ class HBNBCommand(cmd.Cmd):
             execute anythign.
         """
         return ""
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
