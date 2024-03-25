@@ -151,7 +151,7 @@ class HBNBCommand(cmd.Cmd):
         """
         args = shlex.split(line)
         objects = storage.all()
-        if len(args) == 2:
+        if len(args) > 2 or len(args) == 2:
             obj_id = f"{args[0]}" + '.' + f"{args[1]}"
         else:
             obj_id = None
